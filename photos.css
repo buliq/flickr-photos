@@ -12,11 +12,19 @@ body {
     float: left;
     margin: 0 2px 2px 0;
     overflow: hidden;
-    height: 160px;
+    height: 190px;
 }
 
 .photo,
 .photo img {
     min-width: 160px;
     max-width: 240px;
+	z-index: -89;
+}
+
+i {
+	font-size: 30px;
+	color: red;
+	display:block;
+	vertical-align: top;
 }
