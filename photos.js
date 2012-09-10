@@ -119,10 +119,28 @@ var setupPhotos = (function ($) {
 	function isFav(img) {
 		//if our cookie not exists, add empty
 		if (!document.cookie.length || document.cookie.indexOf('fav') == -1) {
-			document.cookie = "fav=;";
+	//		document.cookie = "fav=;";
 		}
 		//we know how we named cookie, so just find that one
-		value = document.cookie.split('fav')[1].split(';')[0].split('=')[1];
+		
+		if (!document.cookie.length || document.cookie.indexOf('fav') == -1 || document.cookie.split('fav').length != 2
+				|| document.cookie.split('fav')[1].split(";").length != 1
+				|| document.cookie.split('fav')[1].split(';')[0].indexOf('=') == -1 || document.cookie.split('fav')[1].split(';')[0].split('=').length != 2) {
+			console.log("here?");
+			if (img != null) {
+				return false;
+			}
+			else {
+				return [];
+			}
+		}
+		value = document.cookie.split('fav')[1];
+		if (value.indexOf(';') == -1) {
+			value = value.split('=')[1];
+		}
+		else {
+			value = value.split(';')[0].split('=')[1];
+		}
 		values = unescape(value).split(',');
 		
 		//this could be helpful, somewhere, but not now
